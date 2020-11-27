@@ -1,0 +1,173 @@
+comment: |
+  The metadata section controls the tab title and saved interview title. You can delete this section if you include this YAML file in another YAML file.
+metadata:
+  title: |
+    Outside Employment Activity Approval Form
+  short title: |
+    Outside Employment
+---  
+mandatory: True
+code:  |
+  date_today = today()  
+---
+
+id: Outside Activity Approval Memo
+continue button field: Outside_Activity_Approval_Memo_intro
+question: |
+  Outside Activity Approval Memo
+subquestion: |
+ You can use this form to determine whether or not your outside employment activity is approved. If you have any questions, please reach out to the Ethics office at bos.ethics@bos.frb.org or directly to the Ethics Officer.
+---
+id: Tell Us About Yourself
+mandatory: True
+question:  |
+  Tell us about yourself
+subquestions:  |
+fields:
+  - First Name: user_firstname
+  - Last Name: user_lastname
+  - Fed E-mail: user_email
+  - Fed Job Title: user_fedrole
+  - Are you an Officer: is_officer
+    datatype: yesnoradio
+  - Department: user_department
+    choices:
+      - Accounting
+      - Audit
+      - Business Technology Solutions
+      - Cash Services
+      - Central Accounting Tech Services
+      - Corporate Affairs
+      - Corporate Communications
+      - Corporate Strategy & Risk
+      - FedNow
+      - Financial Planning & Analysis
+      - Financial Support Office
+      - Human Resources
+      - Information Security
+      - Law Enforcement Unit
+      - Legal
+      - National Image Services
+      - Network Security Services
+      - Office of Diversity, Equity & Inclusion
+      - Payment Strategies
+      - Procurement
+      - Real Estate Services Group
+      - Research
+      - Supervision, Regulation & Credit
+      - Wholesale Payments
+      - Other: other_department
+---
+mandatory: True
+question:  |
+  Tell us about your Outside Employment Activity
+subquestion:  |
+  Complete all fields below.
+fields:
+  - Name of Outside Employer: employer_name
+  - Outside Employment position: outside_position
+  - Estimated hours per week: employment_hours
+  - Will you manage any organizational funds or bank accounts in this role?: funds_managed
+    datatype: yesnoradio
+  - Is the position paid?: is_paid
+    choices:
+      - Paid
+      - Unpaid
+  - Please describe the position: employment_description
+    input type: area
+    rows: 10
+    maxlength: 400
+---
+mandatory: True
+question: |
+ Does your outside employment fall into any of the following categories?
+fields:
+  - "Select the category that are the same or substantially similar to your Outside Activity": is_approved
+    choices:
+      - Member of the armed forces of the United States or any National Guard unit: MILITARY
+      - Employment, seasonal or otherwise, at a retail store such as Lord &Taylor, Macy’s, or Target: SEASONAL RETAIL
+      - Self-employment selling consumer products such as Avon, Tupperware, small appliances, laundry products, cosmetics, etc. as long as the employee does not sell the products at the Bank: SELF CONSUMER
+      - Employment at a restaurant, lounge, bar, etc.: FOOD SERVICE
+      - Employment as a sports coach, referee, or concessionaire, photographer, church organist, or church choral director: COACH
+      - Employment as a real estate agent, a lawn care service provider, or a home repair, plumbing or electrical contractor, provided you are not employed by any person or entity doing business with or actively seeking to do business with the Bank: REAL ESTATE
+      - Employment as an entertainer: ENTERTAINER
+      - Employment in childcare or elder care: CARE PROVIDER
+      - Employment with a public law enforcement agency, such as the police or sheriff department or with a fire department: LAW ENFORCEMENT
+      - Occasional, casual employment repairing, de-bugging, maintaining or installing hardware or software on the personal computers of neighbors, friends, or acquaintances: CASUAL
+      - None of the above: NONE
+        uncheck others: True
+---
+mandatory: True
+question:  |
+  Financial Sector Prohibition
+subquestion:  |
+  As a general rule, employees should not accept outside employment at domestic or foreign banks, investment firms, bank holding companies, savings & loan holding companies, or their affiliates. 
+fields:
+ - "Is this a financial services position?": is_financial
+   datatype: yesnoradio
+---
+#if is_finanical is true then it's an automatic denial else
+#if user_department is BTS or SUPERVISION/REG then it's an auotmatic review
+#if employment_catgory is NONE OF THE ABOVE then it's an automatic review
+#if is_officer is true then it's an automatic review else approved.
+mandatory: True
+Code: |
+  if is_financial:
+    approval_status = 'DENIED'
+    approval_reason = 'Outside Activity is not permissible under Section 7.1 of the Code of Conduct'
+    approval_notice = 'False'
+    review_notice = 'False'
+    denial_notice = 'True'
+  elif is_officer:
+    approval_status = 'PENDING REVIEW'
+    approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
+    approval_notice = 'False'
+    review_notice = 'True'
+    denial_notice = 'False'
+  elif funds_managed:
+    approval_status = 'PENDING REVIEW'
+    approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
+    approval_notice = 'False'
+    review_notice = 'True'
+    denial_notice = 'False'
+  elif user_department == 'Business Technology Solutions':
+    approval_status = 'PENDING REVIEW'
+    approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
+    approval_notice = 'False'
+    review_notice = 'True'
+    denial_notice = 'False'
+  elif user_department == 'Supervision, Regulation & Credit':
+    approval_status = 'PENDING REVIEW'
+    approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
+    approval_notice = 'False'
+    review_notice = 'True'
+    denial_notice = 'False'
+  else:
+    approval_status = 'APPROVED'
+    approval_reason = 'This Outside Activity is permitted under Section 7.1 of the Code of Conduct and the Ethics office list of approved activities.'
+    approval_notice = 'True'
+    review_notice = 'False'
+    denial_notice = 'False'
+---
+Mandatory: True
+question: |
+  Sign your name
+subquestion: |
+  By signing your name, you certify that the information provided is accurate.
+signature: user_signature
+---
+Mandatory: True
+question:  |
+  Your request is ${approval_status }. ${approval_reason }. Please reach out to the Ethics teams if you have questions or would like to discuss this with an Ethics Officer.
+
+subquestion: |
+  Here is your Outside Activity Memo.
+attachment:
+  name: Outside Employment Activity Memo
+  filename: Outside Employment Activity Memo
+  docx template file: Outside_Activity_Approval_Memo.docx
+  valid formats:
+    - pdf
+    - docx
+---
+    
