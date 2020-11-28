@@ -35,5 +35,15 @@ The first step in my research was figuring out which tool would be most helpful 
 
 This project could not have been accomplished without feedback from multiple users. Feeback from my project partner can be found here: XXX. Attached you can also find the user testing matrix that was used test all of the possible outcomes at: XXX . Testing was done by myself, the Project Partner and an employee who might use this tool.
 
+Version 1- Identified issues by user tests:
+- Multiple scenarios were putting out three different forms. | combined into one form using conditional logic on DOCX
+- Checkboxes made the look intimidating | switched to dropdown
+- No ability to send to Ethics team 
+- No screen indicating approval/pending/denial prior to receiving the memo. | added to the final document printout screen
+- Visually Memo needed tweaks | Memo updated to reflect design updates (changes to font size, spacing, and layout)
+- Questions should be separated into different categories - too much at once (broke into sections: user info, Activity info, special considerations, final approval screen)
+
+Version 2
+
 
 
