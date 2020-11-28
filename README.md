@@ -4,6 +4,9 @@ A docassemble extension.
 
 ## Author
 
+Kisha Wilson
+Conding the Law - Student
+J.D. Candidate 2022
 kwilson5@su.suffolk.edu
 
 ## Disclaimer
