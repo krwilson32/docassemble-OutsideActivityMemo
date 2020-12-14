@@ -10,7 +10,6 @@ mandatory: True
 code:  |
   date_today = today()  
 ---
-
 id: Outside Activity Approval Memo
 continue button field: Outside_Activity_Approval_Memo_intro
 question: |
@@ -28,7 +27,7 @@ fields:
   - Last Name: user_lastname
   - Fed E-mail: user_email
   - Fed Job Title: user_fedrole
-  - Are you an Officer: is_officer
+  - Are you an Officer?: is_officer
     datatype: yesnoradio
   - Department: user_department
     choices:
@@ -80,12 +79,12 @@ fields:
 ---
 mandatory: True
 question: |
- Does your outside employment fall into any of the following categories?
+ Is your outside employment the same or similar to any of the following categories?
 fields:
-  - "Select the category that are the same or substantially similar to your Outside Activity": is_approved
+  - "Select the category": is_approved
     choices:
       - Member of the armed forces of the United States or any National Guard unit: MILITARY
-      - Employment, seasonal or otherwise, at a retail store such as Lord &Taylor, Macy’s, or Target: SEASONAL RETAIL
+      - Employment, seasonal or otherwise, at a retail store such as Lord &Taylor, Macy’s, or Target: RETAIL
       - Self-employment selling consumer products such as Avon, Tupperware, small appliances, laundry products, cosmetics, etc. as long as the employee does not sell the products at the Bank: SELF CONSUMER
       - Employment at a restaurant, lounge, bar, etc.: FOOD SERVICE
       - Employment as a sports coach, referee, or concessionaire, photographer, church organist, or church choral director: COACH
@@ -93,9 +92,8 @@ fields:
       - Employment as an entertainer: ENTERTAINER
       - Employment in childcare or elder care: CARE PROVIDER
       - Employment with a public law enforcement agency, such as the police or sheriff department or with a fire department: LAW ENFORCEMENT
-      - Occasional, casual employment repairing, de-bugging, maintaining or installing hardware or software on the personal computers of neighbors, friends, or acquaintances: CASUAL
+      - Occasional, casual employment repairing, de-bugging, maintaining or installing hardware or software on the personal computers of neighbors, friends, or acquaintances: CASUAL IT
       - None of the above: NONE
-        uncheck others: True
 ---
 mandatory: True
 question:  |
@@ -114,54 +112,53 @@ mandatory: True
 Code: |
   if is_financial:
     approval_status = 'DENIED'
-    approval_reason = 'Outside Activity is not permissible under Section 7.1 of the Code of Conduct'
-    approval_notice = 'False'
-    review_notice = 'False'
-    denial_notice = 'True'
+    approval_reason = 'This Outside Activity is not permissible under Section 7.1 of the Code of Conduct and has been denied. If you feel this is an error, please reach out to bos.ethics@bos.frb.org to speak with a member of the ethics team'
+    show_conditions = False
   elif is_officer:
     approval_status = 'PENDING REVIEW'
     approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
-    approval_notice = 'False'
-    review_notice = 'True'
-    denial_notice = 'False'
+    show_conditions = True
   elif funds_managed:
     approval_status = 'PENDING REVIEW'
     approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
-    approval_notice = 'False'
-    review_notice = 'True'
-    denial_notice = 'False'
-  elif user_department == 'Business Technology Solutions':
+    approval_notice = 'This request must be reviewed by an Ethics Officer. Additional information may be required. A member of the ethics team will be in touch with you shortly'
+    show_conditions = True
+  elif user_department == 'Business Technology Solutions' and is_approved == 'CASUAL IT':
     approval_status = 'PENDING REVIEW'
-    approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
-    approval_notice = 'False'
-    review_notice = 'True'
-    denial_notice = 'False'
+    approval_reason = 'BTS employees should clear corporate IT employment with an ethics officer.An Ethics officer will review this request and get back to you. Additional information may be requested'
+    show_conditions = True
   elif user_department == 'Supervision, Regulation & Credit':
     approval_status = 'PENDING REVIEW'
-    approval_reason = 'An Ethics officer will review this request and get back to you. Additional information may be requested.'
-    approval_notice = 'False'
-    review_notice = 'True'
-    denial_notice = 'False'
+    approval_reason =  'An Ethics officer will review this request and get back to you. Additional information may be requested.'
+    show_conditions = True
   else:
     approval_status = 'APPROVED'
     approval_reason = 'This Outside Activity is permitted under Section 7.1 of the Code of Conduct and the Ethics office list of approved activities.'
-    approval_notice = 'True'
-    review_notice = 'False'
-    denial_notice = 'False'
+    show_conditions = True
 ---
-Mandatory: True
 question: |
   Sign your name
 subquestion: |
-  By signing your name, you certify that the information provided is accurate.
+  By signing your name, you certify that the information provided is accurate and you agree to the following conditions:
+
+  * The outside activity will not bring discredit to the reputation of the Bank or the System, interfere with the full and proper discharge of my duties and responsibilities, or be incompatible with my duties and responsibilities.
+  * My outside employment activity will not create an 18 U.S.C. § 208 conflict of interest with Fed.
+  * My outside employment activity will not create appearance issues that would lead reasonable people to question your integrity or impartiality. 
+  * My outside employment activity will not violate the Emoluments Clause (you may not be paid to work for a foreign government, e.g., no consulting for foreign central banks).
+  * My outside employment activity will not violate restrictions on compensated teaching, speaking, or writing (you must not get paid to write or give speeches about Fed policies, or about current or recent assignments).
+  * My outside employment activity will not involve activities that would appear to be using your Fed office for private gain (you must not advertise yourself as a Fed employee).
+  * My outside employment activity will not involve activities that would occur at work, use Fed resources, or take place on Fed time.
+  * My outside employment activity will not involve activities that would risk disclosure of nonpublic Fed information.
+  * I understand that employees required to file ethics disclosure forms A, B, C, or D must identify all outside employment annually.
+
 signature: user_signature
 ---
 Mandatory: True
 question:  |
-  Your request is ${approval_status }. ${approval_reason }. Please reach out to the Ethics teams if you have questions or would like to discuss this with an Ethics Officer.
+  Your request is ${approval_status }. 
 
 subquestion: |
-  Here is your Outside Activity Memo.
+ ${approval_reason } Please reach out to the Ethics teams if you have questions or would like to discuss this with an Ethics Officer. Please download your Outside Activity Memo below. 
 attachment:
   name: Outside Employment Activity Memo
   filename: Outside Employment Activity Memo
