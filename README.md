@@ -29,6 +29,8 @@ A five-minute powerpoint introduction to the project can be found at https://git
 
 The first step in my research was figuring out which tool would be most helpful in addressing this issue. I spoke with my Supervisor, who is my Project Partner, and she mentioned that the solution needed to be simple enough to be self-guided. I considered ease of use, cost, portability, user interface, and the tools and training I already had available to me when making a selection. A guided interview was an obvious choice to root out the obvious approvals and denials while gathering the info we need for those requests that need additional review. I considered tools like Community.Lawyer, documate, and QnA Markup but ultimately found that docassemble would be the most helpful tool as it provided me with the most flexibility, was cost-effective, was the one I was most familair with and easliy integrated with GitHub which is actively used in the organization. Once I determined that Docassemble would be the plaform to use, I saw that there were many a number of approval tools that were very helpful to look at but I found docassemble documentation to be the most helpful resource as the approval tool I've created addresses the specific rules associated with this organization. I was able to use some of the conditional logic from other Document Assembly Line projects. For example, I used some conditional logic on my docx file that was used on one of the Tenancy forms to hide sections of the docx based on the variables. I met with my Project Partner when we were orginally framing the solution and then upon completion of an MVP. Both my Project Partner and other testers went through the tool and provided feedback which was incorporated.
 
+I also completed a flowchart which can be found at https://github.com/krwilson32/docassemble-OutsideActivityMemo/blob/main/Outside%20Activity%20Flowchart.png to map out the logic of the tool. 
+
 ### Feedback:
 
 This project could not have been accomplished without feedback from multiple users. Final feeback from my project partner can be found here: https://github.com/krwilson32/docassemble-OutsideActivityMemo/blob/main/Project%20Partner%20Letter_Erin%20Devereaux.pdf. Attached you can also find the user testing matrix that was used test all of the possible outcomes at: https://github.com/krwilson32/docassemble-OutsideActivityMemo/blob/main/Outside%20Activity%20Memo_Testing%20Matrix.xlsx. Testing was done by myself, the Project Partner and my partner Kevin Montoya who took the place of an employee who would use the tool.
@@ -63,7 +65,16 @@ Version 2
 
 Version 3
 - Updates from project partner - remove conditional logic for supervision positions if they are in an approved category.
+
+Feedback has been incorporated and all issues have been resolved with the exception of enhancements which can be found in the issues log as well as below.
+
+### Future Enchancements
+- Collect approvals, denials and pending into a tracker and then use machine learning to see if certain things might be approved
+- automatic e-mails
+- automatic tracking
+- adding rideshare as approved category
+- potential board positions
 - Add rideshare
 
-Feedback has been incorporated and all issues have been resolved.
+
 
