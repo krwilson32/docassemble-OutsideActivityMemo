@@ -31,7 +31,7 @@ The first step in my research was figuring out which tool would be most helpful 
 
 ### Feedback:
 
-This project could not have been accomplished without feedback from multiple users. Feeback from my project partner can be found here: XXX. Attached you can also find the user testing matrix that was used test all of the possible outcomes at: XXX . Testing was done by myself, the Project Partner and an employee who might use this tool.
+This project could not have been accomplished without feedback from multiple users. Feeback from my project partner can be found here: XXX. Attached you can also find the user testing matrix that was used test all of the possible outcomes at: https://github.com/krwilson32/docassemble-OutsideActivityMemo/blob/main/Outside%20Activity%20Memo_Testing%20Matrix.xlsx. Testing was done by myself, the Project Partner and my partner Kevin Montoya who took the place of an employee who would use the tool.
 
 Version 1- Identified issues by user tests:
 - Multiple scenarios were putting out three different forms. | combined into one form using conditional logic on DOCX
@@ -48,5 +48,5 @@ Version 3
 - Updates from project partner - remove conditional logic for supervision positions if they are in an approved category.
 - Add rideshare
 
-
+Feedback has been incorporated and all issues have been resolved.
 
