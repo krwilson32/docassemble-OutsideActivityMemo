@@ -33,6 +33,23 @@ The first step in my research was figuring out which tool would be most helpful 
 
 This project could not have been accomplished without feedback from multiple users. Feeback from my project partner can be found here: XXX. Attached you can also find the user testing matrix that was used test all of the possible outcomes at: https://github.com/krwilson32/docassemble-OutsideActivityMemo/blob/main/Outside%20Activity%20Memo_Testing%20Matrix.xlsx. Testing was done by myself, the Project Partner and my partner Kevin Montoya who took the place of an employee who would use the tool.
 
+Key considerations for user personas:
+- Officers are automatically pending
+- non-officers are automatically approved for non-financial approved positions
+- all employees are denied for financial sector positions
+
+User personas for testing:
+ 1. Non-officer employee who is doing a nonfinancial paid position in an approved category
+ 2. Non-officer employee in a financial position in approved
+ 3. Non-officer employee in a financial position not in a approved category
+ 4. Non-officer employee in a nonfinanancial not approved category
+ 4. Officer employee who is doing a nonfinancial paid position in an approved category
+ 5. Officer employee in a financial position in approved
+ 6. Officer employee in a financial position not in a approved category
+ 7. BTS employee in a CASUAL IT position nonfinancial
+ 8. BTS employee in a financial CASUAL IT position 
+ 
+ 
 Version 1- Identified issues by user tests:
 - Multiple scenarios were putting out three different forms. | combined into one form using conditional logic on DOCX
 - Checkboxes made the look intimidating | switched to dropdown
