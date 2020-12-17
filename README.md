@@ -42,6 +42,11 @@ Version 1- Identified issues by user tests:
 - Questions should be separated into different categories - too much at once (broke into sections: user info, Activity info, special considerations, final approval screen)
 
 Version 2
+- Logic incorrect. If it's a financial sector job, it goes around the denial when it's from an "approved category" - FIXED
+
+Version 3
+- Updates from project partner - remove conditional logic for supervision positions if they are in an approved category.
+- Add rideshare
 
 
 
